@@ -9,8 +9,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var isAlertVisible: Bool = true
     var body: some View {
-        Text("Hello World")
+        Button(action: {
+            self.isAlertVisible.toggle()
+        }) {
+            Text("Show alert")
+        }.alert(isPresented: $isAlertVisible) {
+            Alert(title: Text("Hello from the alert view!"), message: Text("This is some text for the message property ;)"), primaryButton: Alert.Button.default(Text("With action"), action: {
+                print("The action is triggered!")
+            }), secondaryButton: Alert.Button.cancel(Text("Close me")))
+        }
     }
 }
 
